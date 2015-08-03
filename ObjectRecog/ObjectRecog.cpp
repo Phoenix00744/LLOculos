@@ -1,7 +1,9 @@
+
 // ObjectRecog.cpp : Defines the entry point for the console application.
 //
 #include "stdafx.h"
 #include <iostream>
+#include <fstream>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -29,38 +31,23 @@ bool first;
 RNG rng(12345);
 
 /// Function header
-void thresh_callback(int, void*);
+void rockDetect();
 void lightAndShadow();
+void recordPositions(CvRect r, int ind, int bheight, int bwidth);
 int findThresh(Mat img);
-int Undistort2(CvCapture* lol);
+int Analysis(CvCapture* lol);
 bool calibCheck();
 
 int _tmain(int argc, _TCHAR* argv[])
 {
 	CvCapture* hehe = cvCreateCameraCapture( 0 );
 
-	//while(1)
-	//{
-	//	p_cam>>src;
-
-	//	lightAndShadow();
-
-	//	escCheck = cvWaitKey(20);
-	//	if(escCheck == 27)
-	//	{
-	//		p_cam.release();
-	//		cvDestroyAllWindows();
-	//		break;
-	//	}
-	//}
-
-	Undistort2(hehe);
+	Analysis(hehe);
 
 	return 0;
 }
 
-/** @function thresh_callback */
-void thresh_callback(int, void*)
+void rockDetect()
 {
   Mat threshold_output;
   vector<vector<Point> > contours;
@@ -83,14 +70,19 @@ void thresh_callback(int, void*)
 
   if(first) drawing = Mat::zeros( threshold_output.size(), CV_8UC3 );
 
+  fstream yay;
+  yay.open("rocks.txt");
+  yay.clear();
+  yay.close();
+
   /// Draw polygonal contour + bonding rects + circles
   for( int i = 0; i< contours.size(); i++ )
      {
        Scalar color = Scalar( rng.uniform(0, 255), rng.uniform(0,255), rng.uniform(0,255) );
-	   //drawContours( drawing, contours_poly, i, color, 1, 8, vector<Vec4i>(), 0, Point() );
 	   if((boundRect[i].height > tsize && boundRect[i].width > tsize) && boundRect[i].height < src.size().height - 30) 
 	   {
 		   rectangle( drawing, boundRect[i].tl(), boundRect[i].br(), color, 2, 8, 0 );
+		   recordPositions(boundRect[i], i, threshold_output.size().height, threshold_output.size().width);
 	   }
      }
 
@@ -98,10 +90,8 @@ void thresh_callback(int, void*)
   if(!first)
   {
 	  addWeighted(src, 0.5, drawing, 0.5, 0.0, last);
-	  //namedWindow( "Rocks", CV_WINDOW_AUTOSIZE );
 	  imshow( "Rockyy", last );
 	  waitKey(1);
-	  //createTrackbar( "Threshold:", "Rock", &thresh, max_thresh, thresh_callback );
   }
 }
 
@@ -113,11 +103,11 @@ void lightAndShadow()
 
 	thresh = findThresh(src_gray) + deviate;
 	first = true;
-	thresh_callback(0,0);
+	rockDetect();
 
 	thresh -= deviate*2;
 	first = false;
-	thresh_callback(0,0);
+	rockDetect();
 }
 
 int findThresh(Mat img)
@@ -137,7 +127,7 @@ int findThresh(Mat img)
 	return mean;
 }
 
-int Undistort2(CvCapture* lol)
+int Analysis(CvCapture* lol)
 {
 	const int board_dt = 20;
 	int board_w = 5; // Board width in squares
@@ -265,10 +255,8 @@ int Undistort2(CvCapture* lol)
 	while( image )
 	{
 		IplImage *t = cvCloneImage( image );
-		cvShowImage( "Calibration", image ); // Show raw image
 		cvRemap( t, image, mapx, mapy ); // undistort image
 		cvReleaseImage( &t );
-		cvShowImage( "Undistort", image ); // Show corrected image
 
 		src = Mat(image);
 		lightAndShadow();
@@ -300,3 +288,14 @@ bool calibCheck()
 	else goto again;
 }
 
+void recordPositions(CvRect r, int ind, int bheight, int bwidth)
+{
+	ofstream lol;
+
+	double xpos = (double)r.x - (double)(bwidth/2) + (double)(r.width/2);
+	double ypos = (double)r.y - (double)(bheight/2) + (double)(r.height/2);
+
+	lol.open("rocks.txt");
+	lol << "Rocks " << ind << ": " << xpos << ", " << ypos << "\n";
+	lol.close();
+}

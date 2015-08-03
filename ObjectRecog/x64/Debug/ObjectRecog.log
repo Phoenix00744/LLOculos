@@ -1,18 +1,18 @@
-﻿Build started 7/15/2015 4:42:06 PM.
-     1>Project "C:\Users\Vikas\Documents\Visual Studio 2012\Projects\ObjectRecog\ObjectRecog\ObjectRecog.vcxproj" on node 2 (Build target(s)).
+﻿Build started 8/2/2015 6:50:40 PM.
+     1>Project "C:\Users\Vikas\Documents\GitHub\LLOculos\ObjectRecog\ObjectRecog.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\CL.exe /c /IC:\Users\Vikas\Documents\opencv\build\include\opencv2 /IC:\Users\Vikas\Documents\opencv\build\include\opencv /IC:\Users\Vikas\Documents\opencv\build\include /Zi /nologo /W3 /WX- /sdl /Od /D WIN32 /D _DEBUG /D _CONSOLE /D _CRT_SECURE_NO_WARNINGS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"x64\Debug\ObjectRecog.pch" /Fo"x64\Debug\\" /Fd"x64\Debug\vc110.pdb" /Gd /TP /errorReport:prompt ObjectRecog.cpp
          ObjectRecog.cpp
-     1>ObjectRecog.cpp(8): warning C4005: '_CRT_SECURE_NO_WARNINGS' : macro redefinition
+     1>ObjectRecog.cpp(9): warning C4005: '_CRT_SECURE_NO_WARNINGS' : macro redefinition
                  command-line arguments :  see previous definition of '_CRT_SECURE_NO_WARNINGS'
-     1>ObjectRecog.cpp(194): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
      1>ObjectRecog.cpp(195): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>ObjectRecog.cpp(196): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Vikas\Documents\Visual Studio 2012\Projects\ObjectRecog\x64\Debug\ObjectRecog.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\Users\Vikas\Documents\opencv\build\x64\vc11\lib opencv_stitching2411d.lib opencv_contrib2411d.lib opencv_videostab2411d.lib opencv_superres2411d.lib opencv_nonfree2411d.lib opencv_gpu2411d.lib opencv_ocl2411d.lib opencv_legacy2411d.lib opencv_ts2411d.lib opencv_calib3d2411d.lib opencv_features2d2411d.lib opencv_objdetect2411d.lib opencv_highgui2411d.lib opencv_video2411d.lib opencv_photo2411d.lib opencv_imgproc2411d.lib opencv_flann2411d.lib opencv_ml2411d.lib opencv_core2411d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Vikas\Documents\Visual Studio 2012\Projects\ObjectRecog\x64\Debug\ObjectRecog.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Vikas\Documents\Visual Studio 2012\Projects\ObjectRecog\x64\Debug\ObjectRecog.lib" /MACHINE:X64 x64\Debug\ObjectRecog.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Vikas\Documents\GitHub\LLOculos\x64\Debug\ObjectRecog.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\Users\Vikas\Documents\opencv\build\x64\vc11\lib opencv_stitching2411d.lib opencv_contrib2411d.lib opencv_videostab2411d.lib opencv_superres2411d.lib opencv_nonfree2411d.lib opencv_gpu2411d.lib opencv_ocl2411d.lib opencv_legacy2411d.lib opencv_ts2411d.lib opencv_calib3d2411d.lib opencv_features2d2411d.lib opencv_objdetect2411d.lib opencv_highgui2411d.lib opencv_video2411d.lib opencv_photo2411d.lib opencv_imgproc2411d.lib opencv_flann2411d.lib opencv_ml2411d.lib opencv_core2411d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Vikas\Documents\GitHub\LLOculos\x64\Debug\ObjectRecog.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Vikas\Documents\GitHub\LLOculos\x64\Debug\ObjectRecog.lib" /MACHINE:X64 x64\Debug\ObjectRecog.obj
          x64\Debug\stdafx.obj
-         ObjectRecog.vcxproj -> C:\Users\Vikas\Documents\Visual Studio 2012\Projects\ObjectRecog\x64\Debug\ObjectRecog.exe
-     1>Done Building Project "C:\Users\Vikas\Documents\Visual Studio 2012\Projects\ObjectRecog\ObjectRecog\ObjectRecog.vcxproj" (Build target(s)).
+         ObjectRecog.vcxproj -> C:\Users\Vikas\Documents\GitHub\LLOculos\x64\Debug\ObjectRecog.exe
+     1>Done Building Project "C:\Users\Vikas\Documents\GitHub\LLOculos\ObjectRecog\ObjectRecog.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:08.75
+Time Elapsed 00:00:14.07
