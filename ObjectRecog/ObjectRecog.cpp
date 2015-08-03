@@ -40,7 +40,7 @@ bool calibCheck();
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	CvCapture* hehe = cvCreateCameraCapture( 0 );
+	CvCapture* hehe = cvCreateCameraCapture( 1 );
 
 	Analysis(hehe);
 
@@ -70,19 +70,22 @@ void rockDetect()
 
   if(first) drawing = Mat::zeros( threshold_output.size(), CV_8UC3 );
 
-  fstream yay;
+  ofstream yay;
   yay.open("rocks.txt");
   yay.clear();
   yay.close();
 
   /// Draw polygonal contour + bonding rects + circles
+  int count = 0;
   for( int i = 0; i< contours.size(); i++ )
      {
        Scalar color = Scalar( rng.uniform(0, 255), rng.uniform(0,255), rng.uniform(0,255) );
 	   if((boundRect[i].height > tsize && boundRect[i].width > tsize) && boundRect[i].height < src.size().height - 30) 
 	   {
+		   count++;
+
 		   rectangle( drawing, boundRect[i].tl(), boundRect[i].br(), color, 2, 8, 0 );
-		   recordPositions(boundRect[i], i, threshold_output.size().height, threshold_output.size().width);
+		   recordPositions(boundRect[i], count, threshold_output.size().height, threshold_output.size().width);
 	   }
      }
 
@@ -290,12 +293,14 @@ bool calibCheck()
 
 void recordPositions(CvRect r, int ind, int bheight, int bwidth)
 {
-	ofstream lol;
-
 	double xpos = (double)r.x - (double)(bwidth/2) + (double)(r.width/2);
-	double ypos = (double)r.y - (double)(bheight/2) + (double)(r.height/2);
+	double ypos = (double)(-r.y) + (double)(bheight/2) - (double)(r.height/2);
 
-	lol.open("rocks.txt");
-	lol << "Rocks " << ind << ": " << xpos << ", " << ypos << "\n";
-	lol.close();
+	ofstream file;
+	file.open("rocks.txt",ios_base::app);
+
+	file << xpos << ", " << ypos;
+	file << "\n";
+
+	file.close();
 }
